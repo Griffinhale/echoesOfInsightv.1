@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://dt1f40kigqdf6"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_8nprn"]
+[ext_resource type="Texture2D" uid="uid://bofusv8gbqp7g" path="res://chars/boar/boar_NE_idle_0.png" id="2_xc81j"]
+[ext_resource type="Texture2D" uid="uid://fxe22n16w8h3" path="res://chars/boar/boar_NE_idle_1.png" id="3_7qm70"]
+[ext_resource type="Texture2D" uid="uid://1b61q2tg3yjr" path="res://chars/boar/boar_NE_idle_2.png" id="4_7v08v"]
+[ext_resource type="Texture2D" uid="uid://qf77himju5mf" path="res://chars/boar/boar_NE_idle_3.png" id="5_t5q1q"]
+[ext_resource type="Texture2D" uid="uid://be06ot5t8cqvs" path="res://chars/boar/boar_NE_idle_4.png" id="6_3ao8s"]
+[ext_resource type="Texture2D" uid="uid://dmcoesi8gc0wa" path="res://chars/boar/boar_NE_idle_5.png" id="7_d8fub"]
+[ext_resource type="Texture2D" uid="uid://c4xdyjogn80dg" path="res://chars/boar/boar_NE_idle_6.png" id="8_0chbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bc682"]
+size = Vector2(29, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhh5a"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_xc81j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7qm70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7v08v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t5q1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3ao8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d8fub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0chbx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="test_enemy" type="Node2D"]
+script = ExtResource("1_8nprn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 2.5)
+shape = SubResource("RectangleShape2D_bc682")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = SubResource("SpriteFrames_mhh5a")
+autoplay = "default"
+frame_progress = 0.19386
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

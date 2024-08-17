@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://5lluhbu58snh"]
+
+[ext_resource type="PackedScene" uid="uid://bxqe4v238n00b" path="res://test_map.tscn" id="1_lnhou"]
+[ext_resource type="PackedScene" uid="uid://dy43vutst7517" path="res://summoner.tscn" id="2_a6g1c"]
+[ext_resource type="PackedScene" uid="uid://dt1f40kigqdf6" path="res://test_enemy.tscn" id="3_s2dur"]
+
+[node name="test_main" type="Node"]
+
+[node name="Dungeon" parent="." instance=ExtResource("1_lnhou")]
+position = Vector2(444, 302)
+
+[node name="Summoner" parent="." instance=ExtResource("2_a6g1c")]
+position = Vector2(420, 260)
+scale = Vector2(0.4, 0.4)
+
+[node name="test_enemy" parent="." instance=ExtResource("3_s2dur")]
+position = Vector2(475, 263)
