@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsoiuekrlkfj7"]
+
+[ext_resource type="Script" path="res://tes_material.gd" id="1_gsrhx"]
+[ext_resource type="Texture2D" uid="uid://dw4rulcj8oas7" path="res://tilesets/TilesetNature.png" id="2_2t0ff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wecu"]
+
+[node name="test_obj" type="Area2D"]
+script = ExtResource("1_gsrhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0wecu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(1, 1.14286)
+texture = ExtResource("2_2t0ff")
+hframes = 24
+vframes = 21
+frame = 265
