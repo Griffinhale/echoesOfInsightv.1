@@ -22,6 +22,7 @@ func _ready():
 	generate_materials()
 	generate_cover()
 	
+	
 func generate_layout():
 	layout = []
 	for x in range(room_size.x):
@@ -63,8 +64,7 @@ func generate_materials():
 			if layout[x][y] == 0 and randf() < 0.03:
 				tilemap_materials.set_cell(Vector2(x,y), 0, Vector2(0,4))
 				print("test")
-				var material_node = Area2D.new()
-				material_node.set_script(mat_script)
+				var material_node = MaterialNode.new(x,y)
 				var tile_world_pos = tilemap_materials.map_to_local(Vector2(x,y))
 				material_node.global_position = to_global(tile_world_pos)
 				var collision_shape = CollisionShape2D.new()
@@ -84,3 +84,9 @@ func spawn_enemies():
 
 func handleBossFight():
 	pass
+
+
+func _on_child_exiting_tree(node: Node) -> void:
+	print(node.tileOrigin)
+	tilemap_materials.erase_cell(node.tileOrigin)
+	

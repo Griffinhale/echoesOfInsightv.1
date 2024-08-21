@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bxqe4v238n00b" path="res://test_map.tscn" id="1_lnhou"]
 [ext_resource type="PackedScene" uid="uid://dy43vutst7517" path="res://summoner.tscn" id="2_a6g1c"]
 [ext_resource type="PackedScene" uid="uid://dt1f40kigqdf6" path="res://test_enemy.tscn" id="3_s2dur"]
-[ext_resource type="PackedScene" uid="uid://dsoiuekrlkfj7" path="res://test_material.tscn" id="4_07hcm"]
+[ext_resource type="PackedScene" path="res://test_material.tscn" id="4_07hcm"]
 
 [node name="test_main" type="Node"]
 
@@ -21,4 +21,5 @@ position = Vector2(475, 263)
 position = Vector2(466, 234)
 scale = Vector2(0.4, 0.4)
 
+[connection signal="child_exiting_tree" from="Dungeon" to="Dungeon" method="_on_child_exiting_tree"]
 [connection signal="interact_obj" from="Summoner" to="Summoner" method="_on_interact_obj"]

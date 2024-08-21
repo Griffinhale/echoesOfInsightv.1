@@ -42,6 +42,7 @@ func _on_interact_obj():
 
 	# If there's a nearby interactable object, trigger its interaction method
 	if closest_interactable:
+		#closest_interactable.pick_material.connect(_on_pick_material)
 		closest_interactable.interact_obj()
 
 

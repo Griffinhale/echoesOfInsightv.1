@@ -24,3 +24,6 @@ hframes = 4
 vframes = 4
 frame = 9
 metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(3, 3)

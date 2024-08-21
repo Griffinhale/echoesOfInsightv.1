@@ -1,6 +1,17 @@
 extends Area2D
 
+class_name MaterialNode
+# Connect summoner to material so it can update their inventory
 signal pick_material(material, amount)
+
+var shorthand
+var fullname
+var element
+var genre
+var tileOrigin: Vector2
+
+func _init(x: int, y: int):
+	tileOrigin = Vector2(x, y)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
