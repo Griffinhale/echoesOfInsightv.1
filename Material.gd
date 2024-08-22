@@ -19,7 +19,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func interact_obj():
@@ -27,7 +27,7 @@ func interact_obj():
 	pick_material.emit("flower", 1)
 	queue_free()
 	
-func _on_pick_material(material: String, amount: float):
+func _on_pick_material(material_name: String, amount: float):
 	print("Should send two signals from here, one to summoner one to parent")
-	print(material, " at " , amount)
+	print(material_name, " at " , amount)
 	

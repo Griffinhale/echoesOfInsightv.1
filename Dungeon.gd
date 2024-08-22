@@ -65,6 +65,7 @@ func generate_materials():
 				tilemap_materials.set_cell(Vector2(x,y), 0, Vector2(0,4))
 				print("test")
 				var material_node = MaterialNode.new(x,y)
+				material_node.name = "Mat(" + str(x) + "," + str(y) + ")"
 				var tile_world_pos = tilemap_materials.map_to_local(Vector2(x,y))
 				material_node.global_position = to_global(tile_world_pos)
 				var collision_shape = CollisionShape2D.new()
@@ -87,6 +88,7 @@ func handleBossFight():
 
 
 func _on_child_exiting_tree(node: Node) -> void:
-	print(node.tileOrigin)
-	tilemap_materials.erase_cell(node.tileOrigin)
+	var coord = node.name.substr(3).erase(0).split(",")
+	coord[1] = coord[1].erase(coord[1].length() - 1)
+	tilemap_materials.erase_cell(Vector2(int(coord[0]), int(coord[1])))
 	

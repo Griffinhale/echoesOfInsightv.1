@@ -15,11 +15,11 @@ func _init():
 	health = 3
 
 
-func _on_area_2d_area_entered(area):
+func _on_area_2d_area_entered(_area):
 	health-=1
 	print(health)
 
-func _process(delta):
+func _process(_delta):
 	if health == 0:
 		#Should play death animation then
 		queue_free()

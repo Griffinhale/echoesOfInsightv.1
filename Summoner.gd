@@ -3,6 +3,9 @@ extends BaseEntity
 class_name Summoner
 
 @onready var test_smn = preload("res://test_summon.tscn")
+@onready var inventory_screen = preload("res://inventory_screen.tscn")
+var showInv: bool = false
+var inv_scr
 #interact vars
 signal interact_obj
 var interaction_range = 50
@@ -27,6 +30,13 @@ func switch_loadout():
 func heal():
 	pass
 
+
+func _ready():
+	inv_scr = inventory_screen.instantiate()
+	add_child(inv_scr)
+	inv_scr = inv_scr.get_child(0)
+	inv_scr.visible = showInv
+	
 func _on_interact_obj():
 	var closest_interactable = null
 	var closest_distance = interaction_range
@@ -46,7 +56,7 @@ func _on_interact_obj():
 		closest_interactable.interact_obj()
 
 
-func _input(event):
+func _input(_event):
 	var input_vector = Vector2.ZERO
 	if Input.is_action_pressed("ui_accept"):
 		print("huh?")
@@ -59,7 +69,10 @@ func _input(event):
 		input_vector.x += 1
 	if Input.is_action_pressed("ui_left"):
 		input_vector.x -= 1
-
+	if Input.is_action_pressed("inv"):
+		inv_scr.visible = !showInv
+		showInv = !showInv
+		
 	input_vector = input_vector.rotated(PI / 4).normalized()
 
 	if input_vector != Vector2.ZERO:
