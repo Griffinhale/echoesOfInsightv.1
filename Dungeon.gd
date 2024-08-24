@@ -88,7 +88,10 @@ func handleBossFight():
 
 
 func _on_child_exiting_tree(node: Node) -> void:
-	var coord = node.name.substr(3).erase(0).split(",")
-	coord[1] = coord[1].erase(coord[1].length() - 1)
-	tilemap_materials.erase_cell(Vector2(int(coord[0]), int(coord[1])))
+	var coord: Array
+	if node.name.begins_with("!Mat"):
+		coord = Array(node.name.substr(4).erase(0).split(","))
+		coord[1] = coord[1].split(")")[0];
+		print(coord[0], coord[1])
+		tilemap_materials.erase_cell(Vector2(int(coord[0]), int(coord[1])))
 	

@@ -7,13 +7,12 @@ class_name Summoner
 var showInv: bool = false
 var inv_scr
 #interact vars
-signal interact_obj
+signal interact_obj()
 var interaction_range = 50
-
 #game vars
 var pouch_mixes
 var active_summons
-var inventory
+var inventory = {}
 
 #movement vars
 var velocity = Vector2.ZERO
@@ -36,7 +35,15 @@ func _ready():
 	add_child(inv_scr)
 	inv_scr = inv_scr.get_child(0)
 	inv_scr.visible = showInv
-	
+
+func add_to_inventory(material: String, amount: float):
+	if inventory.has(material):
+		inventory[material] += amount
+	else:
+		inventory[material] = amount
+		
+	print(inventory)
+
 func _on_interact_obj():
 	var closest_interactable = null
 	var closest_distance = interaction_range
@@ -52,13 +59,13 @@ func _on_interact_obj():
 
 	# If there's a nearby interactable object, trigger its interaction method
 	if closest_interactable:
-		#closest_interactable.pick_material.connect(_on_pick_material)
-		closest_interactable.interact_obj()
+		closest_interactable.pick_material.connect(closest_interactable._on_pick_material)
+		closest_interactable.interact_obj(self)
 
 
 func _input(_event):
 	var input_vector = Vector2.ZERO
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept"):
 		print("huh?")
 		interact_obj.emit()
 	if Input.is_action_pressed("ui_up"):

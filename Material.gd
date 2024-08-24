@@ -2,7 +2,7 @@ extends Area2D
 
 class_name MaterialNode
 # Connect summoner to material so it can update their inventory
-signal pick_material(material, amount)
+signal pick_material(subject, material, amount)
 
 var shorthand
 var fullname
@@ -22,12 +22,13 @@ func _ready():
 func _process(_delta):
 	pass
 
-func interact_obj():
-	print("interaction, going to remove")
-	pick_material.emit("flower", 1)
+func interact_obj(from: Node):
+	print("interaction, should add to " + from.name)
+	pick_material.emit(from, "flower", 1)
+	self.name = "!" + self.name
 	queue_free()
 	
-func _on_pick_material(material_name: String, amount: float):
-	print("Should send two signals from here, one to summoner one to parent")
-	print(material_name, " at " , amount)
+func _on_pick_material(to: Node, material_name: String, amount: float):
+	print("sending " + str(amount) + " of " + material_name + " to " + to.name)
+	to.add_to_inventory(material_name, amount)
 	
