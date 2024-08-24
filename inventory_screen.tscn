@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://duxmykwrfupmf"]
+[gd_scene load_steps=3 format=3 uid="uid://duxmykwrfupmf"]
 
+[ext_resource type="Script" path="res://inventory_screen.gd" id="1_ifuqu"]
 [ext_resource type="Texture2D" uid="uid://bii56fosw8agw" path="res://tilesets/menu.png" id="1_ojamv"]
 
 [node name="InventoryScreen" type="CanvasLayer"]
+script = ExtResource("1_ifuqu")
 
 [node name="Background" type="NinePatchRect" parent="."]
 anchors_preset = -1

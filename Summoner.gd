@@ -5,6 +5,7 @@ class_name Summoner
 @onready var test_smn = preload("res://test_summon.tscn")
 @onready var inventory_screen = preload("res://inventory_screen.tscn")
 var showInv: bool = false
+var invChanged: bool = false
 var inv_scr
 #interact vars
 signal interact_obj()
@@ -33,15 +34,17 @@ func heal():
 func _ready():
 	inv_scr = inventory_screen.instantiate()
 	add_child(inv_scr)
-	inv_scr = inv_scr.get_child(0)
 	inv_scr.visible = showInv
+
+func update_inventory():
+	pass
 
 func add_to_inventory(material: String, amount: float):
 	if inventory.has(material):
 		inventory[material] += amount
 	else:
 		inventory[material] = amount
-		
+	invChanged = true
 	print(inventory)
 
 func _on_interact_obj():
@@ -93,6 +96,10 @@ func _process(delta):
 	# Apply friction to slow down the character when no input is given
 	if velocity.length() > 0:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-
+		
 	# Update position based on velocity
 	position += velocity * delta
+	
+	if invChanged:
+		inv_scr.update_inventory(inventory)
+		invChanged = false
