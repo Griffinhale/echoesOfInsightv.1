@@ -22,7 +22,8 @@ var base_acceleration = 800
 var friction = 400
 
 func summon_monster():
-	pass
+	var monsterAdd = test_smn.instantiate()
+	add_child(monsterAdd)
 	
 func switch_loadout():
 	pass
@@ -82,6 +83,8 @@ func _input(_event):
 	if Input.is_action_pressed("inv"):
 		inv_scr.visible = !showInv
 		showInv = !showInv
+	if Input.is_action_pressed("ui_text_indent"):
+		summon_monster()
 		
 	input_vector = input_vector.rotated(PI / 4).normalized()
 
